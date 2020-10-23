@@ -13,6 +13,7 @@
         $scope.colorText = "";
 
         $scope.checkLunch = function (){
+            $scope.colorText="green";
             if($scope.lunchList==""){
                 $scope.message  = "Please enter data first";
                 $scope.colorText="red";
@@ -20,11 +21,13 @@
                 emptyItemsCount();
                 if ($scope.lunchList.split(",").length-$scope.countEmptyItems <= 3)
                     $scope.message  = "Enjoy!";
-                else if ($scope.lunchList.split(",").length-$scope.countEmptyItems > 3)
+                else if ($scope.lunchList.split(",").length-$scope.countEmptyItems > 3){
                     $scope.message  = "Too much!";
+                    $scope.colorText="red";
+                }
 
                 $scope.message += " Note: Empty items: "+$scope.countEmptyItems;
-                $scope.colorText="green";
+
             }
         }
 
