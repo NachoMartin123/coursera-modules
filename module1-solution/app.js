@@ -1,12 +1,45 @@
 (function () {
-    'use strict'; //asegura no cometer errores como declarar variables
-    //que fuera de esta funcion
+    'use strict';
 
-    angular.module('MyFirstApp', [])//returns module instance
-    .controller("MyFirstController", function($scope){//nombre controlador y funcion que lo controla
-        $scope.name = "Nacho";
-        $scope.sayHello = function (){
-            return "Hello coursera";
+    angular.module('LunchCheck', [])//returns module instance
+    .controller('LunchCheckController', LunchCheckController);
+
+    LunchCheckController.inject=["$scope"];
+
+    function LunchCheckController($scope){
+        $scope.message  = "";
+        $scope.countEmptyItems  = 0;
+        $scope.lunchList = "";
+        $scope.colorText = "";
+
+        $scope.checkLunch = function (){
+            if($scope.lunchList==""){
+                $scope.message  = "Please enter data first";
+                $scope.colorText="red";
+            }else{
+                emptyItemsCount();
+                if ($scope.lunchList.split(",").length-$scope.countEmptyItems <= 3)
+                    $scope.message  = "Enjoy!";
+                else if ($scope.lunchList.split(",").length-$scope.countEmptyItems > 3)
+                    $scope.message  = "Too much!";
+
+                $scope.message += " Note: Empty items: "+$scope.countEmptyItems;
+                $scope.colorText="green";
+            }
         }
-    });
+
+
+        function emptyItemsCount(){
+            $scope.countEmptyItems=0;//var count =0;
+            var items = $scope.lunchList.split(',');
+            for (var i=0; i<items.length;i++){
+                if(items[i].trim()==""){
+                    $scope.countEmptyItems++;//count++;
+                }
+            }
+        }
+
+
+    }
+
 })();
