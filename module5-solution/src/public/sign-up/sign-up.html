@@ -1,0 +1,86 @@
+<div class="container" >
+    <form name="myInfoForm" novalidate>
+        <div class="container">
+            <span>First name: </span>
+            <input type="text" style="color:black;"
+                name="firstname" placeholder="Jon"
+                ng-model="signup.user.firstname"
+                required
+                minlength="4"
+                ng-maxlength="10">
+                <span class="error"
+                    ng-if="(myInfoForm.firstname.$error.minlength
+                    || myInfoForm.firstname.$error.required) && myInfoForm.firstname.$touched">
+                    First name must be at least 4 characters long
+                </span>
+                <span class="error"
+                    ng-if="myInfoForm.firstname.$error.maxlength
+                    && myInfoForm.firstname.$touched">
+                    First name must not be longer than 10 characters
+                </span>
+        </div>
+            <br>
+        <div class="container">
+            <span>Last name: </span>
+            <input type="text" style="color:black;"
+            name="lastname" placeholder="Snow"
+            ng-model="signup.user.lastname"
+            minlength="4"
+            ng-maxlength="10" required>
+            <span class="error"
+                ng-if="(myInfoForm.lastname.$error.minlength
+                || myInfoForm.lastname.$error.required) && myInfoForm.lastname.$touched">
+                First name must be at least 4 characters long
+            </span>
+            <span class="error"
+                ng-if="myInfoForm.lastname.$error.maxlength
+                && myInfoForm.lastname.$touched">
+                First name must not be longer than 10 characters
+            </span>
+        </div>
+            <br>
+        <div class="container">
+            <span>Email address: </span>
+            <input type="text" style="color:black;"
+            name="email" placeholder="handle@domain"
+            ng-model="signup.user.email" required>
+            <span class="error"
+                ng-if="myInfoForm.email.$invalid && myInfoForm.email.$touched">
+                Must be a valid email address: handle@domain format
+            </span>
+        </div>
+            <br>
+        <div class="container">
+            <span>Phone number: </span>
+            <input type="text" style="color:black;"
+            name="phone" placeholder="###-###-####"
+            ng-model="signup.user.phone"
+            pattern="(\d{3})-(\d{3})-(\d{4})" required>
+            <span class="error"
+                ng-if="myInfoForm.phone.$invalid && myInfoForm.phone.$touched">
+                Phone must be in the format ###-###-####.
+            </span>
+        </div>
+            <br>
+        <div class="container">
+            <span>Select favourite dish: </span>
+            <input type="text" style="color:black;"
+            name="favdish" placeholder="A1"
+            ng-model="signup.shortname" required>
+            <span class="error"
+                ng-if="signup.errorFavDish">
+                No such number exists.
+            </span>
+        </div>
+        <br>
+
+        <button style="margin-top: 20px; color: black;"
+          ng-disabled="myInfoForm.$invalid"
+          ng-click="signup.submit()">Submit</button>
+
+        <div ng-if="signup.completed" style="margin-top: 20px;">
+            Your information has been saved
+        </div>
+
+    </form>
+</div>

@@ -1,0 +1,31 @@
+<div class="container" ng-if="infctrl.user">
+    <div class="container">
+        <span>First name: {{infctrl.user.firstname}} </span>
+    </div>
+        <br>
+    <div class="container">
+        <span>Last name: {{infctrl.user.lastname}} </span>
+    </div>
+        <br>
+    <div class="container">
+        <span>Email address: {{infctrl.user.email}} </span>
+    </div>
+        <br>
+    <div class="container">
+        <span>Phone number: {{infctrl.user.phone}} </span>
+    </div>
+        <br>
+    <div class="container">
+        <span>Favourite dish: </span>
+        <menu-item menu-item="infctrl.user.favdish">  </menu-item>
+    </div>
+    <br>
+</div>
+<div class="container">
+    <span>Not signed up yet.</span>
+    <a ui-sref="public.signup" ui-sref-active="active"> Sign up</a>
+    <span> now!</span>
+</div>
+<div class="container">
+
+</div>
